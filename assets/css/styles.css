@@ -745,7 +745,7 @@ p {
 /* ---------- Testimonials ---------- */
 .quotes {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
 }
 
@@ -774,7 +774,6 @@ p {
 }
 
 .quote--feature {
-  grid-column: span 2;
   background: var(--ink);
   color: var(--cream);
   border-color: transparent;
@@ -1063,12 +1062,11 @@ p {
   .expo {
     grid-template-columns: 1fr;
   }
-  .quotes,
   .posts {
     grid-template-columns: repeat(2, 1fr);
   }
-  .quote--feature {
-    grid-column: span 2;
+  .quotes {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1171,9 +1169,6 @@ p {
   .quotes,
   .posts {
     grid-template-columns: 1fr;
-  }
-  .quote--feature {
-    grid-column: span 1;
   }
   .field-row {
     grid-template-columns: 1fr;
