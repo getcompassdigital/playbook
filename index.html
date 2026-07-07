@@ -37,7 +37,7 @@
           <li><a href="#insights">Insights</a></li>
         </ul>
         <div class="nav__cta">
-          <a href="#get" class="btn btn--primary">Get the Playbook</a>
+          <a href="#playbookSignup" class="btn btn--primary">Get the Playbook</a>
           <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
@@ -75,10 +75,17 @@
                 <span>Expert guidance on AI, AEO/GEO, and consent-driven marketing</span>
               </li>
             </ul>
+            <div class="hero__actions">
+              <a href="#playbookSignup" class="btn btn--primary">
+                Get the Free Playbook
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <span>Free download &middot; 30+ pages</span>
+            </div>
           </div>
 
           <!-- Form card -->
-          <div class="form-card reveal">
+          <div class="form-card reveal" id="playbookSignup">
             <div class="form-body">
               <div class="form-card__head">
                 <h2>Sign up to get your copy</h2>
@@ -88,30 +95,30 @@
                 <div class="field-row">
                   <div class="field">
                     <label for="firstName">First name <span class="req">*</span></label>
-                    <input type="text" id="firstName" name="firstName" placeholder="First" required />
+                    <input type="text" id="firstName" name="firstName" placeholder="First" autocomplete="given-name" required />
                   </div>
                   <div class="field">
                     <label for="lastName">Last name <span class="req">*</span></label>
-                    <input type="text" id="lastName" name="lastName" placeholder="Last" required />
+                    <input type="text" id="lastName" name="lastName" placeholder="Last" autocomplete="family-name" required />
                   </div>
                 </div>
                 <div class="field">
                   <label for="company">Company <span class="req">*</span></label>
-                  <input type="text" id="company" name="company" placeholder="Your company" required />
+                  <input type="text" id="company" name="company" placeholder="Your company" autocomplete="organization" required />
                 </div>
                 <div class="field-row">
                   <div class="field">
                     <label for="jobTitle">Job title <span class="req">*</span></label>
-                    <input type="text" id="jobTitle" name="jobTitle" placeholder="Job title" required />
+                    <input type="text" id="jobTitle" name="jobTitle" placeholder="Job title" autocomplete="organization-title" required />
                   </div>
                   <div class="field">
-                    <label for="phone">Phone <span class="req">*</span></label>
-                    <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required />
+                    <label for="phone">Phone <span class="optional">(optional)</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" autocomplete="tel" inputmode="tel" />
                   </div>
                 </div>
                 <div class="field">
                   <label for="email">Email <span class="req">*</span></label>
-                  <input type="email" id="email" name="email" placeholder="you@company.com" required />
+                  <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" inputmode="email" required />
                 </div>
                 <button type="submit" class="btn btn--primary btn--block">
                   Send Me the Playbook
@@ -226,7 +233,7 @@
             <p class="eyebrow" style="color: var(--orange);">In Person</p>
             <h2>Prefer to meet in person?</h2>
             <p>Compass Digital will be exhibiting at the International Pool, Spa &amp; Patio Expo in Las Vegas on October 22 to 24. Come pick up a copy of the playbook and talk strategy with our team.</p>
-            <a href="#get" class="btn btn--light" style="margin-top: 22px;">
+            <a href="#playbookSignup" class="btn btn--light" style="margin-top: 22px;">
               Download the Report
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
@@ -381,7 +388,7 @@
           <h2>Overwhelmed by today's digital marketing landscape?</h2>
           <p>Get an overview of our full-funnel framework and the solutions you need to maximize online sales.</p>
           <div class="final__actions">
-            <a href="#get" class="btn btn--primary">
+            <a href="#playbookSignup" class="btn btn--primary">
               Download the Playbook
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
@@ -432,6 +439,11 @@
       </div>
     </div>
   </footer>
+
+  <a class="mobile-sticky-cta is-hidden" id="mobileStickyCta" href="#playbookSignup" aria-label="Get the free 2026 Pool and Spa Digital Marketing Playbook">
+    <span>Get the free playbook</span>
+    <small>30+ pages of 2026 insights</small>
+  </a>
 
   <script src="assets/js/main.js"></script>
 </body>
