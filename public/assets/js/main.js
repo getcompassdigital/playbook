@@ -2,13 +2,21 @@
 (function () {
   "use strict";
 
-  /* ---- Sticky header shadow ---- */
+  /* ---- Sticky header shadow + scroll progress ---- */
   var header = document.getElementById("siteHeader");
+  var progress = document.getElementById("scrollProgress");
   var onScroll = function () {
-    if (!header) return;
-    header.classList.toggle("is-stuck", window.scrollY > 8);
+    if (header) {
+      header.classList.toggle("is-stuck", window.scrollY > 8);
+    }
+    if (progress) {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+      progress.style.transform = "scaleX(" + ratio + ")";
+    }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
   onScroll();
 
   /* ---- Mobile nav toggle ---- */
@@ -98,14 +106,6 @@
       button.addEventListener("click", function () {
         setActiveMapStep(targetId, isMobile(), true);
       });
-      button.addEventListener("mouseenter", function () {
-        if (!isMobile()) {
-          setActiveMapStep(targetId, false, true);
-        }
-      });
-      button.addEventListener("focus", function () {
-        setActiveMapStep(targetId, false, false);
-      });
     });
 
     if ("IntersectionObserver" in window) {
@@ -124,6 +124,39 @@
         mapObserver.observe(step);
       });
     }
+  }
+
+  /* ---- Stats count-up ---- */
+  var statNums = document.querySelectorAll(".stat__num[data-count]");
+  if (statNums.length && "IntersectionObserver" in window && !reduceMotion.matches) {
+    var animateCount = function (el) {
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      var suffix = el.getAttribute("data-suffix") || "";
+      var duration = 1200;
+      var start = null;
+      var tick = function (ts) {
+        if (start === null) start = ts;
+        var t = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (t < 1) window.requestAnimationFrame(tick);
+      };
+      window.requestAnimationFrame(tick);
+    };
+    var statObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+    statNums.forEach(function (el) {
+      statObserver.observe(el);
+    });
   }
 
   /* ---- Embedded form loading state ---- */
