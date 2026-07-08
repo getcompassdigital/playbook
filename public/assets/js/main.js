@@ -56,6 +56,76 @@
   var isMobile = function () {
     return window.matchMedia("(max-width: 720px)").matches;
   };
+
+  /* ---- Playbook growth map controls ---- */
+  var mapButtons = document.querySelectorAll(".map-ribbon__button");
+  var mapSteps = document.querySelectorAll("[data-map-step]");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var setActiveMapStep = function (targetId, shouldScroll, shouldPulse) {
+    var target = document.getElementById(targetId);
+    if (!target || !mapButtons.length || !mapSteps.length) return;
+
+    mapButtons.forEach(function (button) {
+      var active = button.getAttribute("data-map-target") === targetId;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    mapSteps.forEach(function (step) {
+      step.classList.toggle("is-map-active", step.id === targetId);
+      step.classList.remove("is-map-pulsing");
+    });
+
+    if (shouldPulse && !reduceMotion.matches) {
+      target.classList.add("is-map-pulsing");
+      window.setTimeout(function () {
+        target.classList.remove("is-map-pulsing");
+      }, 750);
+    }
+
+    if (shouldScroll) {
+      target.scrollIntoView({
+        behavior: reduceMotion.matches ? "auto" : "smooth",
+        block: isMobile() ? "start" : "center",
+        inline: "nearest"
+      });
+    }
+  };
+
+  if (mapButtons.length && mapSteps.length) {
+    mapButtons.forEach(function (button) {
+      var targetId = button.getAttribute("data-map-target");
+      button.addEventListener("click", function () {
+        setActiveMapStep(targetId, isMobile(), true);
+      });
+      button.addEventListener("mouseenter", function () {
+        if (!isMobile()) {
+          setActiveMapStep(targetId, false, true);
+        }
+      });
+      button.addEventListener("focus", function () {
+        setActiveMapStep(targetId, false, false);
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      var mapObserver = new IntersectionObserver(
+        function (entries) {
+          if (!isMobile()) return;
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActiveMapStep(entry.target.id, false, false);
+            }
+          });
+        },
+        { threshold: 0.55, rootMargin: "-18% 0px -34% 0px" }
+      );
+      mapSteps.forEach(function (step) {
+        mapObserver.observe(step);
+      });
+    }
+  }
+
   var updateStickyCta = function () {
     if (!stickyCta || !card) return;
     var rect = card.getBoundingClientRect();

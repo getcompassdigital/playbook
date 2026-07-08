@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260707-map-nav" />
 </head>
 <body>
   <!-- ============ HEADER ============ -->
@@ -128,15 +128,15 @@
             <h2>The 2026 growth map for pool &amp; spa dealers</h2>
             <p>It doesn't just share trends. It shows how awareness, acquisition, conversion, and lifetime value connect into one smarter operating plan.</p>
             <div class="map-ribbon" aria-label="Playbook growth stages">
-              <span>Awareness</span>
-              <span>Acquisition</span>
-              <span>Conversion</span>
-              <span>LTV</span>
+              <button class="map-ribbon__button is-active" type="button" data-map-target="map-awareness" aria-controls="map-awareness" aria-pressed="true">Awareness</button>
+              <button class="map-ribbon__button" type="button" data-map-target="map-acquisition" aria-controls="map-acquisition" aria-pressed="false">Acquisition</button>
+              <button class="map-ribbon__button" type="button" data-map-target="map-conversion" aria-controls="map-conversion" aria-pressed="false">Conversion</button>
+              <button class="map-ribbon__button" type="button" data-map-target="map-ltv" aria-controls="map-ltv" aria-pressed="false">LTV</button>
             </div>
           </div>
 
           <div class="playbook-map__journey" aria-label="2026 playbook focus areas">
-            <article class="map-step map-step--one reveal">
+            <article class="map-step map-step--one reveal is-map-active" id="map-awareness" data-map-step>
               <div class="map-step__topline">
                 <span class="map-step__num">01</span>
                 <span class="map-step__tag">Roadmap</span>
@@ -148,7 +148,7 @@
               <p>Learn where to invest first, how to balance quick wins with long-term growth, and what digital strategies will future-proof your business.</p>
             </article>
 
-            <article class="map-step map-step--two reveal">
+            <article class="map-step map-step--two reveal" id="map-acquisition" data-map-step>
               <div class="map-step__topline">
                 <span class="map-step__num">02</span>
                 <span class="map-step__tag">AI search</span>
@@ -160,7 +160,7 @@
               <p>Discover how search is evolving beyond keywords. See how Answer Engine and Generative Engine Optimization help your business appear in AI-driven results from ChatGPT, Gemini, and voice assistants.</p>
             </article>
 
-            <article class="map-step map-step--three reveal">
+            <article class="map-step map-step--three reveal" id="map-conversion" data-map-step>
               <div class="map-step__topline">
                 <span class="map-step__num">03</span>
                 <span class="map-step__tag">First-party data</span>
@@ -172,7 +172,7 @@
               <p>Connect CRM data with Google, Meta, and email to personalize campaigns, measure real ROI, and future-proof targeting as third-party cookies disappear.</p>
             </article>
 
-            <article class="map-step map-step--four reveal">
+            <article class="map-step map-step--four reveal" id="map-ltv" data-map-step>
               <div class="map-step__topline">
                 <span class="map-step__num">04</span>
                 <span class="map-step__tag">Lifetime value</span>
@@ -432,6 +432,6 @@
     <small>30+ pages of 2026 insights</small>
   </a>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20260707-map-nav"></script>
 </body>
 </html>
