@@ -381,14 +381,14 @@ p {
 
 .playbook-form-embed {
   margin-top: 2px;
+  isolation: isolate;
   position: relative;
 }
 
 .playbook-form-loading {
   position: absolute;
-  z-index: 1;
-  inset: 0 0 auto;
-  min-height: 150px;
+  z-index: 2;
+  inset: 0;
   display: grid;
   place-items: center;
   border: 1px solid var(--line);
@@ -420,7 +420,7 @@ p {
 }
 
 .playbook-form-embed.is-loading .playbook-form-frame {
-  opacity: 0.3;
+  opacity: 0;
 }
 
 .form-note {

@@ -135,8 +135,10 @@
     }
   };
   if (formFrame && formEmbed) {
-    formFrame.addEventListener("load", markFormReady, { once: true });
-    window.setTimeout(markFormReady, 8000);
+    formFrame.addEventListener("load", function () {
+      window.setTimeout(markFormReady, 180);
+    }, { once: true });
+    window.setTimeout(markFormReady, 12000);
   }
 
   var updateStickyCta = function () {
