@@ -381,6 +381,32 @@ p {
 
 .playbook-form-embed {
   margin-top: 2px;
+  position: relative;
+}
+
+.playbook-form-loading {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  min-height: 150px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(250, 169, 72, 0.1), rgba(91, 122, 143, 0.1)),
+    var(--white);
+  color: var(--slate-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  text-transform: uppercase;
+  transition: opacity 0.25s var(--ease), visibility 0.25s var(--ease);
+}
+
+.playbook-form-embed:not(.is-loading) .playbook-form-loading {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .playbook-form-frame {
@@ -389,6 +415,12 @@ p {
   display: block;
   border: 0;
   background: transparent;
+  opacity: 1;
+  transition: opacity 0.25s var(--ease);
+}
+
+.playbook-form-embed.is-loading .playbook-form-frame {
+  opacity: 0.3;
 }
 
 .form-note {
@@ -872,11 +904,19 @@ p {
 /* ---------- Testimonials ---------- */
 .quotes {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.quotes__stack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
 }
 
 .quote {
+  margin: 0;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -904,11 +944,37 @@ p {
   background: var(--ink);
   color: var(--cream);
   border-color: transparent;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.3fr);
+  gap: clamp(24px, 4vw, 52px);
+  align-items: end;
+  padding: clamp(30px, 4vw, 42px);
+}
+
+.quote--feature .quote__mark {
+  grid-column: 1 / -1;
 }
 
 .quote--feature p {
   color: rgba(245, 245, 244, 0.92);
-  font-size: 1.12rem;
+  flex: 0;
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  margin: 0;
+}
+
+.quotes__stack .quote {
+  padding: 24px 28px;
+}
+
+.quotes__stack .quote__mark {
+  font-size: 3rem;
+  height: 24px;
+}
+
+.quotes__stack .quote p {
+  flex: 0;
+  font-size: 0.96rem;
+  line-height: 1.55;
 }
 
 .quote__who {
@@ -921,7 +987,12 @@ p {
 }
 
 .quote--feature .quote__who {
-  border-top-color: rgba(255, 255, 255, 0.14);
+  align-self: end;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 0;
+  margin-top: 0;
+  padding-left: 24px;
+  padding-top: 0;
 }
 
 .quote__avatar {
@@ -1338,6 +1409,17 @@ p {
   .quotes,
   .posts {
     grid-template-columns: 1fr;
+  }
+  .quotes__stack,
+  .quote--feature {
+    grid-template-columns: 1fr;
+  }
+  .quote--feature .quote__who {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    margin-top: 22px;
+    padding-left: 0;
+    padding-top: 20px;
   }
   .footer__top {
     flex-direction: column;

@@ -126,6 +126,19 @@
     }
   }
 
+  /* ---- Embedded form loading state ---- */
+  var formEmbed = document.getElementById("playbookFormEmbed");
+  var formFrame = formEmbed ? formEmbed.querySelector(".playbook-form-frame") : null;
+  var markFormReady = function () {
+    if (formEmbed) {
+      formEmbed.classList.remove("is-loading");
+    }
+  };
+  if (formFrame && formEmbed) {
+    formFrame.addEventListener("load", markFormReady, { once: true });
+    window.setTimeout(markFormReady, 8000);
+  }
+
   var updateStickyCta = function () {
     if (!stickyCta || !card) return;
     var rect = card.getBoundingClientRect();

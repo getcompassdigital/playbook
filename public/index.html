@@ -16,11 +16,13 @@
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
   <!-- Fonts (matches getcompassdigital.com) -->
+  <link rel="preconnect" href="https://getcompassdigital.com" />
+  <link rel="dns-prefetch" href="//getcompassdigital.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260707-map-nav" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260707-polish" />
 </head>
 <body>
   <!-- ============ HEADER ============ -->
@@ -91,13 +93,16 @@
                 <h2>Sign up to get your copy</h2>
                 <p>Fill out the form and we'll send the 2026 Playbook straight to your inbox.</p>
               </div>
-              <div class="playbook-form-embed">
+              <div class="playbook-form-embed is-loading" id="playbookFormEmbed">
+                <div class="playbook-form-loading" aria-hidden="true">Loading secure form...</div>
                 <iframe
                   class="playbook-form-frame"
                   src="https://getcompassdigital.com/playbook-form/?nowprocket=1"
                   title="Access the 2026 Pool and Spa Digital Marketing Playbook"
-                  loading="lazy"
+                  loading="eager"
                   referrerpolicy="strict-origin-when-cross-origin"
+                  allow="fullscreen"
+                  allowfullscreen
                 ></iframe>
                 <p class="form-note">No spam. Just the strategies that move the pool &amp; spa industry forward.</p>
               </div>
@@ -306,29 +311,31 @@
             </footer>
           </blockquote>
 
-          <blockquote class="quote reveal">
-            <div class="quote__mark" aria-hidden="true">&ldquo;</div>
-            <p>I just had a meeting with our manufacturer's sales rep and we're up 39% in hot tub orders from last year. Your awesome team played a big part in that increase. Thank you!</p>
-            <footer class="quote__who">
-              <span class="quote__avatar" aria-hidden="true">JB</span>
-              <span>
-                <span class="quote__name">James B.</span><br />
-                <span class="quote__co">Inland Empire Hot Tubs</span>
-              </span>
-            </footer>
-          </blockquote>
+          <div class="quotes__stack">
+            <blockquote class="quote reveal">
+              <div class="quote__mark" aria-hidden="true">&ldquo;</div>
+              <p>I just had a meeting with our manufacturer's sales rep and we're up 39% in hot tub orders from last year. Your awesome team played a big part in that increase. Thank you!</p>
+              <footer class="quote__who">
+                <span class="quote__avatar" aria-hidden="true">JB</span>
+                <span>
+                  <span class="quote__name">James B.</span><br />
+                  <span class="quote__co">Inland Empire Hot Tubs</span>
+                </span>
+              </footer>
+            </blockquote>
 
-          <blockquote class="quote reveal">
-            <div class="quote__mark" aria-hidden="true">&ldquo;</div>
-            <p>Compass Digital's efforts generated a significant increase in organic traffic, leads, and brand awareness. Their proactive communication and prompt responses ensured a smooth workflow, making them an attentive partner.</p>
-            <footer class="quote__who">
-              <span class="quote__avatar" aria-hidden="true">KH</span>
-              <span>
-                <span class="quote__name">Krystal H.</span><br />
-                <span class="quote__co">Designer Window Supply</span>
-              </span>
-            </footer>
-          </blockquote>
+            <blockquote class="quote reveal">
+              <div class="quote__mark" aria-hidden="true">&ldquo;</div>
+              <p>Compass Digital's efforts generated a significant increase in organic traffic, leads, and brand awareness. Their proactive communication and prompt responses ensured a smooth workflow, making them an attentive partner.</p>
+              <footer class="quote__who">
+                <span class="quote__avatar" aria-hidden="true">KH</span>
+                <span>
+                  <span class="quote__name">Krystal H.</span><br />
+                  <span class="quote__co">Designer Window Supply</span>
+                </span>
+              </footer>
+            </blockquote>
+          </div>
         </div>
       </div>
     </section>
@@ -347,21 +354,21 @@
             <span class="post__tag">First-Party Data</span>
             <h3>Own Your Audience: Why First-Party Data Matters in 2026</h3>
             <p>Digital marketing is becoming more expensive and less predictable. Rising ad costs and tighter privacy laws are making it harder to rely on paid social alone.</p>
-            <a href="https://getcompassdigital.com/blog/" class="post__more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="https://getcompassdigital.com/blog/own-your-audience-why-first-party-data-matters-in-2026/" class="post__more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
 
           <article class="post reveal">
             <span class="post__tag">Brand Strategy</span>
             <h3>Radical Transparency: Your Best Sales Tool in 2026</h3>
             <p>In a world full of both AI-polished perfection and AI slop, customers are seeking a breath of fresh air. The brands that win are the ones that show their work.</p>
-            <a href="https://getcompassdigital.com/blog/" class="post__more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="https://getcompassdigital.com/blog/radical-transparency-your-best-sales-tool-in-2026/" class="post__more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
 
           <article class="post reveal">
             <span class="post__tag">AI Search</span>
             <h3>From SEO to GEO: How Dealers Keep Showing Up in AI Search</h3>
             <p>Google's AI Overviews and chat engines like ChatGPT and Perplexity are rewriting the rules. Click-through rates on classic blue links are sagging by 30 to 35 percent.</p>
-            <a href="https://getcompassdigital.com/blog/" class="post__more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="https://getcompassdigital.com/blog/seo-to-geo-hot%e2%80%91tub-dealers/" class="post__more">Read more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
         </div>
       </div>
@@ -432,6 +439,6 @@
     <small>30+ pages of 2026 insights</small>
   </a>
 
-  <script src="assets/js/main.js?v=20260707-map-nav"></script>
+  <script src="assets/js/main.js?v=20260707-polish"></script>
 </body>
 </html>
