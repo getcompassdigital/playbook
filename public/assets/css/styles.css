@@ -432,46 +432,176 @@ p {
   background: var(--orange);
 }
 
-/* ---------- Inside cards ---------- */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
+/* ---------- Inside growth map ---------- */
+.section--playbook-map {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--white) 0%, #faf7f2 100%);
 }
 
-.card {
+.section--playbook-map::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(91, 122, 143, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 122, 143, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  pointer-events: none;
+}
+
+.section--playbook-map .container {
   position: relative;
-  background: var(--white);
+  z-index: 1;
+  max-width: 1340px;
+}
+
+.playbook-map {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.5fr) minmax(0, 1.5fr);
+  gap: clamp(30px, 4vw, 56px);
+  align-items: start;
+}
+
+.playbook-map__intro {
+  position: sticky;
+  top: 112px;
+  margin-bottom: 0;
+}
+
+.playbook-map__intro h2 {
+  max-width: 13ch;
+}
+
+.playbook-map__intro p {
+  max-width: 32ch;
+}
+
+.map-ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(91, 122, 143, 0.22);
+}
+
+.map-ribbon span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  border: 1px solid rgba(91, 122, 143, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--slate-dark);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+
+.map-ribbon span:first-child {
+  border-color: transparent;
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.playbook-map__journey {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 56px;
+  row-gap: 24px;
+  padding-block: 8px 10px;
+}
+
+.playbook-map__journey::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 34px;
+  bottom: 34px;
+  left: calc(50% - 1.5px);
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--orange), var(--slate));
+  box-shadow: 0 0 0 7px rgba(250, 169, 72, 0.08);
+}
+
+.map-step {
+  position: relative;
+  z-index: 1;
+  min-height: 314px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.94);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 34px 32px;
+  border-radius: 8px;
+  padding: clamp(24px, 3vw, 34px);
+  box-shadow: var(--shadow-soft);
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
     border-color 0.3s var(--ease);
-  overflow: hidden;
+  overflow: visible;
 }
 
-.card::before {
+.map-step::before {
   content: "";
   position: absolute;
   inset: 0 0 auto 0;
   height: 4px;
+  border-radius: 8px 8px 0 0;
   background: linear-gradient(90deg, var(--orange), var(--slate));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s var(--ease);
 }
 
-.card:hover {
+.map-step::after {
+  content: "";
+  position: absolute;
+  top: 42px;
+  width: 18px;
+  height: 18px;
+  border: 4px solid #faf7f2;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 1px rgba(91, 122, 143, 0.28);
+}
+
+.map-step:nth-child(odd)::after {
+  right: -37px;
+}
+
+.map-step:nth-child(even)::after {
+  left: -37px;
+}
+
+.map-step:nth-child(even) {
+  margin-top: 46px;
+}
+
+.map-step--three {
+  margin-top: -18px;
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+  box-shadow: 0 22px 58px -28px rgba(28, 27, 26, 0.75);
+}
+
+.map-step:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
-  border-color: transparent;
 }
 
-.card:hover::before {
-  transform: scaleX(1);
+.map-step__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
 }
 
-.card__num {
+.map-step__num {
   font-family: var(--serif);
   font-size: 0.95rem;
   font-weight: 700;
@@ -479,31 +609,65 @@ p {
   letter-spacing: 0.05em;
 }
 
-.card__icon {
+.map-step--three .map-step__num {
+  color: var(--orange);
+}
+
+.map-step__tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  border: 1px solid rgba(91, 122, 143, 0.22);
+  border-radius: 999px;
+  color: var(--slate-dark);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  line-height: 1;
+  padding: 7px 10px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.map-step--three .map-step__tag {
+  border-color: rgba(245, 245, 244, 0.18);
+  color: var(--cream);
+}
+
+.map-step__icon {
   width: 52px;
   height: 52px;
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--cream);
   color: var(--slate);
   display: grid;
   place-items: center;
-  margin: 16px 0 20px;
+  margin-bottom: 24px;
 }
 
-.card__icon svg {
+.map-step--three .map-step__icon {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--orange);
+}
+
+.map-step__icon svg {
   width: 26px;
   height: 26px;
 }
 
-.card h3 {
-  font-size: 1.4rem;
+.map-step h3 {
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
   margin-bottom: 12px;
 }
 
-.card p {
+.map-step p {
   color: var(--muted);
   font-size: 1rem;
   margin: 0;
+}
+
+.map-step--three p {
+  color: var(--gray);
 }
 
 /* ---------- Stats ---------- */
@@ -957,6 +1121,20 @@ p {
 }
 
 /* ---------- Responsive ---------- */
+@media (max-width: 1080px) {
+  .playbook-map {
+    grid-template-columns: 1fr;
+  }
+  .playbook-map__intro {
+    position: static;
+    max-width: 760px;
+  }
+  .playbook-map__intro h2,
+  .playbook-map__intro p {
+    max-width: none;
+  }
+}
+
 @media (max-width: 960px) {
   .hero__grid {
     grid-template-columns: 1fr;
@@ -1080,7 +1258,38 @@ p {
     gap: 12px 18px;
     font-size: 0.74rem;
   }
-  .cards,
+  .playbook-map__journey {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-left: 42px;
+  }
+  .playbook-map__journey::before {
+    top: 20px;
+    bottom: 20px;
+    left: 9px;
+  }
+  .map-step,
+  .map-step:nth-child(even),
+  .map-step--three {
+    min-height: 0;
+    margin-top: 0;
+  }
+  .map-step::after,
+  .map-step:nth-child(odd)::after,
+  .map-step:nth-child(even)::after {
+    top: 30px;
+    left: -42px;
+    right: auto;
+  }
+  .map-step__topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .map-step__icon {
+    margin-bottom: 20px;
+  }
   .quotes,
   .posts {
     grid-template-columns: 1fr;
