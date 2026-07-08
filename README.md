@@ -4,10 +4,11 @@ A redesigned landing page for the Compass Digital 2026 Pool &amp; Spa Digital Ma
 
 ## What's here
 
-- `index.html` — the full landing page (semantic, single file)
-- `assets/css/styles.css` — design system and layout
-- `assets/js/main.js` — sticky header, mobile nav, scroll reveals, form handling
-- `assets/img/` — brand logo and favicon
+- `public/index.html` — the full landing page (semantic, single file)
+- `public/assets/css/styles.css` — design system and layout
+- `public/assets/js/main.js` — sticky header, mobile nav, scroll reveals, mobile CTA
+- `public/assets/img/` — brand logo and favicon
+- `wrangler.jsonc` — Cloudflare Workers static assets deployment config
 
 ## Design language
 
@@ -24,18 +25,29 @@ Pulled from the live homepage:
 
 ## Run locally
 
-It's a static site. Open `index.html` directly, or serve it:
+It's a static site. Open `public/index.html` directly, or serve it:
 
 ```bash
-python3 -m http.server 8080
+python3 -m http.server 8080 --directory public
 # then visit http://localhost:8080
 ```
 
 ## Form wiring
 
-The signup form (`#playbookForm`) currently runs a front-end demo handler that
-validates fields and shows a success state. Wire the `submit` handler in
-`assets/js/main.js` to your CRM / form endpoint (e.g. HubSpot) to capture leads.
+The signup area embeds the live Gravity Form at
+`https://getcompassdigital.com/playbook-form/?nowprocket=1`. Submissions are
+handled by WordPress / Gravity Forms and the connected ActiveCampaign feed.
+
+## Deploy to Cloudflare
+
+This repo is configured for Cloudflare Workers static assets. Use:
+
+```bash
+npx wrangler deploy
+```
+
+The `wrangler.jsonc` file defines the Worker name and asset directory so
+Cloudflare's build environment can deploy non-interactively.
 
 ## Content source
 
